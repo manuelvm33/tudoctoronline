@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "tu doctor online",
+  "main": "server.js",
+  "scripts": {
+    "comentario": "//test echo Error: no test specified && exit 1 cambiamos la linea anterior para establecer el inicio de nodemos de la siguiente forma:",
+    "start": "nodemon"
+  },
+  "keywords": [
+    "doctor",
+    "online",
+    "nodejs",
+    "backend"
+  ],
+  "author": "u31g09\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[Cmision tic 2022 UIS U31G09",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
