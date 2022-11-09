@@ -31,12 +31,30 @@ myConnectionToMongoDB();
 
 //Here I use the routes
 myApp.use(myRouter);
+//Patients Controller 
 const myPatientController = require('./control/patientController');
 myRouter.get('/patient',myPatientController.getAll);
 myRouter.get('/patient/:_id',myPatientController.getById);
 myRouter.post('/patient',myPatientController.create);
 myRouter.put('/patient/:_id',myPatientController.update);
 myRouter.delete('/patient/:_id',myPatientController.delete);
+
+//Specialist categories controller 
+const myCategoriesController = require('./control/specialistCategoryController');
+myRouter.get('/category',myCategoriesController.getAll);
+myRouter.get('/category/:_id',myCategoriesController.getById);
+myRouter.post('/category',myCategoriesController.create);
+myRouter.put('/category/:_id',myCategoriesController.update);
+myRouter.delete('/category/:_id',myCategoriesController.delete);
+
+//Specialist  controller 
+const mySpecialistController = require('./control/specialistController');
+myRouter.get('/specialist',mySpecialistController.getAll);
+myRouter.get('/specialist/:_id',mySpecialistController.getById);
+myRouter.post('/specialist',mySpecialistController.create);
+myRouter.put('/specialist/:_id',mySpecialistController.update);
+myRouter.delete('/specialist/:_id',mySpecialistController.delete);
+
 //Asignación del puerto para el servidor Web
 myApp.listen(4000);
 

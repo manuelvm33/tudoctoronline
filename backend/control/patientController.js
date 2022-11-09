@@ -1,5 +1,4 @@
 //import patient model
-const e = require('express');
 const myPatientModel = require('../model/patient');
 
 //exports each function to complement the CRUD
