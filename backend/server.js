@@ -1,47 +1,62 @@
-
-//Importar el módulo de express
-//forma convencional de nodejs
+/**
+ * Importamos el modulo de express.
+ */
 const express = require('express');
-//otra forma de javascript
-//import { Express } from 'express';
+//importamos las variables de entorno
+require('dotenv').config({path:'var.env'});
+//importamos el conector para MongoDB
+const myMongoose = require('mongoose');
+/**
+ * La anterior fue la forma de importar express, tambien se puede asi:
+ * Otra forma de importarlo como se hace en js
+ *      import express from 'express'
+ */
 
+/**
+ * Para utilizar los metodos HTTP post, get, etc debemos establecer rutas
+ * Para establecer las rutas debemos establecer una constante, en este caso myRouter
+ * es importante que esto se haga ANTES de inicializar express.
+ */
+const myRouter = express.Router();
 
-//para establecer las rutas de express
-const router = express.Router();
-
+//importamos la conecion a la base de datos:
+const myConnectionToMongoDB = require('./config/cxn_db');
 
 //para inicializar express
-let app = express();
+let myApp = express();
+//to deserialize JSON documents
+myApp.use(express.json());
+//establish connection to the database
+myConnectionToMongoDB();
 
-//-----------------------------------------------------------
-//prueba minima para saber que funciona el módulo de express
-//en relacion al entorno web (ejecutar el servidor web)
-/*app.use('/', function(req, rest){
-    rest.send("Hola Mundo...")
-});*/
-//arrow function
-//app.use('/', (req, rest) =>{
-//    rest.send("Utilizndo la funcion de flecha ...");
-//});
-//-------------------------------------------------------------
+//Here I use the routes
+myApp.use(myRouter);
+//Patients Controller 
+const myPatientController = require('./control/patientController');
+myRouter.get('/patient',myPatientController.getAll);
+myRouter.get('/patient/:_id',myPatientController.getById);
+myRouter.post('/patient',myPatientController.create);
+myRouter.put('/patient/:_id',myPatientController.update);
+myRouter.delete('/patient/:_id',myPatientController.delete);
 
-//-------------------------------------------------------------------
-// Para utilizar los metodos http => GET, POST , PUT , DELETE, UPDATE
-//const router = express.Router(); => agregada en la linea 10 antes de inicilizar
-app.use(router);
+//Specialist categories controller 
+const myCategoriesController = require('./control/specialistCategoryController');
+myRouter.get('/category',myCategoriesController.getAll);
+myRouter.get('/category/:_id',myCategoriesController.getById);
+myRouter.post('/category',myCategoriesController.create);
+myRouter.put('/category/:_id',myCategoriesController.update);
+myRouter.delete('/category/:_id',myCategoriesController.delete);
 
-router.get('/mensaje', (req,res) => {
-    res.send('Mensaje con método GET');
-});
-//-------------------------------------------------------------------
-router.post('/mensaje', (req,res)=> {
-    res.send('Mensaje con el método POST');
-})
-
-
+//Specialist  controller 
+const mySpecialistController = require('./control/specialistController');
+myRouter.get('/specialist',mySpecialistController.getAll);
+myRouter.get('/specialist/:_id',mySpecialistController.getById);
+myRouter.post('/specialist',mySpecialistController.create);
+myRouter.put('/specialist/:_id',mySpecialistController.update);
+myRouter.delete('/specialist/:_id',mySpecialistController.delete);
 
 //Asignación del puerto para el servidor Web
-app.listen(4000);
+myApp.listen(4000);
 
 //Mensaje para confirmar que el servidro web esta activo
 console.log('Servidor web ejecutandose desde: http://localhost:4000/');
