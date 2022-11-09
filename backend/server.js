@@ -55,6 +55,16 @@ myRouter.post('/specialist',mySpecialistController.create);
 myRouter.put('/specialist/:_id',mySpecialistController.update);
 myRouter.delete('/specialist/:_id',mySpecialistController.delete);
 
+//Medical Appointment  controller 
+const myMedicalAppointmentController = require('./control/medical_appointmentContoller');
+myRouter.get('/medicalappointment',myMedicalAppointmentController.getAll);
+myRouter.get('/medicalappointment/:_id',myMedicalAppointmentController.getById);
+myRouter.post('/medicalappointment',myMedicalAppointmentController.create);
+myRouter.put('/medicalappointment/:_id',myMedicalAppointmentController.update);
+myRouter.delete('/medicalappointment/:_id',myMedicalAppointmentController.delete);
+
+
+
 //Asignación del puerto para el servidor Web
 myApp.listen(4000);
 
