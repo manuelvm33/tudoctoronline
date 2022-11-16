@@ -28,32 +28,48 @@ let myApp = express();
 myApp.use(express.json());
 //establish connection to the database
 myConnectionToMongoDB();
-
+// Importar los CORS
+const cors = require('cors');
+myApp.use(cors());
 //Here I use the routes
 myApp.use(myRouter);
+
+var whitelist = ['http://localhost:4000/', 'http://localhost:4200/']
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (whitelist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { Origin: true } // reflect (enable) the requested Origin in the CORS response
+  }else{
+    corsOptions = { Origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+
+
+
 //Patients Controller 
 const myPatientController = require('./control/patientController');
-myRouter.get('/patient',myPatientController.getAll);
-myRouter.get('/patient/:_id',myPatientController.getById);
-myRouter.post('/patient',myPatientController.create);
-myRouter.put('/patient/:_id',myPatientController.update);
-myRouter.delete('/patient/:_id',myPatientController.delete);
+myRouter.get('/patient',cors(corsOptionsDelegate), myPatientController.getAll);
+myRouter.get('/patient/:_id',cors(corsOptionsDelegate),myPatientController.getById);
+myRouter.post('/patient',cors(corsOptionsDelegate),myPatientController.create);
+myRouter.put('/patient/:_id',cors(corsOptionsDelegate),myPatientController.update);
+myRouter.delete('/patient/:_id',cors(corsOptionsDelegate),myPatientController.delete);
 
 //Specialist categories controller 
 const myCategoriesController = require('./control/specialistCategoryController');
-myRouter.get('/category',myCategoriesController.getAll);
-myRouter.get('/category/:_id',myCategoriesController.getById);
-myRouter.post('/category',myCategoriesController.create);
-myRouter.put('/category/:_id',myCategoriesController.update);
-myRouter.delete('/category/:_id',myCategoriesController.delete);
+myRouter.get('/category',cors(corsOptionsDelegate),myCategoriesController.getAll);
+myRouter.get('/category/:_id',cors(corsOptionsDelegate),myCategoriesController.getById);
+myRouter.post('/category',cors(corsOptionsDelegate),myCategoriesController.create);
+myRouter.put('/category/:_id',cors(corsOptionsDelegate),myCategoriesController.update);
+myRouter.delete('/category/:_id',cors(corsOptionsDelegate),myCategoriesController.delete);
 
 //Specialist  controller 
 const mySpecialistController = require('./control/specialistController');
-myRouter.get('/specialist',mySpecialistController.getAll);
-myRouter.get('/specialist/:_id',mySpecialistController.getById);
-myRouter.post('/specialist',mySpecialistController.create);
-myRouter.put('/specialist/:_id',mySpecialistController.update);
-myRouter.delete('/specialist/:_id',mySpecialistController.delete);
+myRouter.get('/specialist',cors(corsOptionsDelegate),mySpecialistController.getAll);
+myRouter.get('/specialist/:_id',cors(corsOptionsDelegate),mySpecialistController.getById);
+myRouter.post('/specialist',cors(corsOptionsDelegate),mySpecialistController.create);
+myRouter.put('/specialist/:_id',cors(corsOptionsDelegate),mySpecialistController.update);
+myRouter.delete('/specialist/:_id',cors(corsOptionsDelegate),mySpecialistController.delete);
 
 //Medical Appointment  controller 
 const myMedicalAppointmentController = require('./control/medical_appointmentContoller');
