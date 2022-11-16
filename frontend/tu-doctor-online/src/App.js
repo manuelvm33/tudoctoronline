@@ -2,8 +2,8 @@ import React, {Fragment} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Menu from './components/menu';
 import Login from './pages/auth/Login';
-import HomePage from './pages/homePage';
 import CreatePatient from './pages/auth/CreatePatient';
+import Home from './pages/Home';
 //para seleccionar 
 function App() {
 
@@ -13,12 +13,12 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' exact element={<Login/>}/>
-          <Route path='/crear-especialista' element={<Menu/>}/>
+          <Route path='/home' exact element={<Home/>}/>
           <Route path='/crear-paciente' exact element={<CreatePatient/>}/>
           <Route path='/agendar-cita-medica' element={<Menu/>}/>
-          <Route path='/listapacientes' element={<Menu/>}/>
-          <Route path='/listaespecialista' element={<Menu/>}/>
-          <Route path='/listacitas' element={<Menu/>}/>
+          <Route path='/listar-pacientes' element={<Menu/>}/>
+          <Route path='/listar-especialista' element={<Menu/>}/>
+          <Route path='/listar-citas' element={<Menu/>}/>
 
         </Routes>
       </Router>

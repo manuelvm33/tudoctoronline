@@ -3,8 +3,6 @@ import {Link} from 'react-router-dom';
 import APIInvoke from "../../utils/APIInvoke";
 import swal from 'sweetalert';
 
-let id = 0;
-
 const CreatePatient = () =>{
 
     const [patient, setPatient] = useState({
@@ -48,6 +46,7 @@ const CreatePatient = () =>{
             })
         }else{
 
+        let id = 10932;
         const data = {
         "patient_id": id,
         "patient_name": patient.name,
@@ -58,7 +57,29 @@ const CreatePatient = () =>{
         const response = APIInvoke.invokePOST(`/patient`, data);
         const message = response.msg;
         console.log(response);
-        id++;
+        const msg = "El usuario fue registrado correctamente";
+        swal({
+            title:"Information",
+            text:msg,
+            icon:'success',
+            buttons:{
+                confirm:{
+                    text: 'Ok',
+                    value:true,
+                    visible:true,
+                    className:'btn btn-primary',
+                    closeModal:true
+                }
+            }
+        });
+        setPatient({
+            name: '',
+            lastname:'',
+            email:'',
+            password:'',
+            confirm:''
+        })
+
         }
         
     }
@@ -175,7 +196,7 @@ const CreatePatient = () =>{
                 Registrar
             </button>
                 <Link to={"/"} className="btn btn-block btn-danger">
-                <i class="fas fa-arrow-alt-circle-left"></i>    Regregar al Login 
+                <i className="fas fa-arrow-alt-circle-left"></i>    Regregar al Login 
                 </Link>
             </div>
             </form>

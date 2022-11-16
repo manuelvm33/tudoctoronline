@@ -1,7 +1,71 @@
-import React from "react";
-import {Link} from 'react-router-dom';
+import React , {useState, useEffect}from "react";
+import {Link, useNavigate} from 'react-router-dom';
+import APIInvoke from "../../utils/APIInvoke";
+import swal from 'sweetalert';
 
 const Login = () => {
+    //to redirect from one component to another
+    const navigate = useNavigate();
+
+    const [patient, setPatient] = useState({
+        email: '',
+        password:'',
+    });
+
+    const {email,password} = patient;
+
+    const onChange = (e) =>{
+        setPatient({
+            ...patient,
+            [e.target.name]: e.target.value
+        });
+    }
+    const login = async () => {
+        const data = {
+            email: patient.email,
+            password: patient.password
+        }
+        const response = await APIInvoke.invokeGET('/patient');
+        var isValidUser = 0;
+        const validar = response.map( patient => {
+            if(patient.patient_email === data.email && patient.patient_password === data.password){
+                isValidUser=1;
+            }
+        });
+        if(isValidUser===0){
+
+            const msg = "No fue posible iniciar sesion.\nEl usuario no se encuentra registrado.\nIntente nuevamente";
+            swal({
+                title:"Error",
+                text:msg,
+                icon:'error',
+                buttons:{
+                    confirm:{
+                        text: 'Ok',
+                        value:true,
+                        visible:true,
+                        className:'btn btn-danger',
+                        closeModal:true
+                    }
+                }
+            })
+            
+        }else{
+            //redirect to home
+            navigate('/home')
+        }
+    }
+
+    const onSubmit = (e) =>{
+        e.preventDefault();
+        login();
+    }
+
+    useEffect(() =>{
+        document.getElementById('email').focus();
+    },[]);
+
+
   return (
     <div className="hold-transition login-page bg">
     <div className="login-box">
@@ -14,7 +78,7 @@ const Login = () => {
           </div>
           <div className="card-body">
             <p className="login-box-msg">Iniciar sesión</p>
-            <form action="../../index3.html" method="post">
+            <form onSubmit={onSubmit}>
               <div className="input-group mb-3">
                 <input
                   type="email"
@@ -22,6 +86,9 @@ const Login = () => {
                   placeholder="Correo electrónico"
                   id="email"
                   name="email"
+                  value={email}
+                  onChange={onChange}
+                  required
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
@@ -36,6 +103,9 @@ const Login = () => {
                     placeholder="Contraseña"
                     id="password"
                     name="password"
+                    value={password}
+                    onChange={onChange}
+                    required
                 />
             <div className="input-group-append">
                 <div className="input-group-text">
