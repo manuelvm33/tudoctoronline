@@ -4,6 +4,9 @@ import Menu from './components/menu';
 import Login from './pages/auth/Login';
 import CreatePatient from './pages/auth/CreatePatient';
 import Home from './pages/Home';
+import Patient from './pages/dashboard/Patient';
+import Medicalappointment from './pages/dashboard/MedicalAppo';
+import Specialist from './pages/dashboard/Specialist';
 //para seleccionar 
 function App() {
 
@@ -16,9 +19,9 @@ function App() {
           <Route path='/home' exact element={<Home/>}/>
           <Route path='/crear-paciente' exact element={<CreatePatient/>}/>
           <Route path='/agendar-cita-medica' element={<Menu/>}/>
-          <Route path='/listar-pacientes' element={<Menu/>}/>
-          <Route path='/listar-especialista' element={<Menu/>}/>
-          <Route path='/listar-citas' element={<Menu/>}/>
+          <Route path='/home/listar-pacientes' element={<Patient/>}/>
+          <Route path='/home/listar-especialistas' element={<Specialist/>}/>
+          <Route path='/home/listar-citas' element={<Medicalappointment/>}/>
 
         </Routes>
       </Router>
