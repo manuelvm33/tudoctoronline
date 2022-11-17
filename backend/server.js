@@ -34,7 +34,7 @@ myApp.use(cors());
 //Here I use the routes
 myApp.use(myRouter);
 
-var whitelist = ['http://localhost:4000/', 'http://localhost:4200/']
+var whitelist = ['http://localhost:4000/', 'http://localhost:4200/', 'http://localhost:3000/'];
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
   if (whitelist.indexOf(req.header('Origin')) !== -1) {
@@ -70,6 +70,16 @@ myRouter.get('/specialist/:_id',cors(corsOptionsDelegate),mySpecialistController
 myRouter.post('/specialist',cors(corsOptionsDelegate),mySpecialistController.create);
 myRouter.put('/specialist/:_id',cors(corsOptionsDelegate),mySpecialistController.update);
 myRouter.delete('/specialist/:_id',cors(corsOptionsDelegate),mySpecialistController.delete);
+
+//Medical Appointment  controller 
+const myMedicalAppointmentController = require('./control/medical_appointmentContoller');
+myRouter.get('/medicalappointment',myMedicalAppointmentController.getAll);
+myRouter.get('/medicalappointment/:_id',myMedicalAppointmentController.getById);
+myRouter.post('/medicalappointment',myMedicalAppointmentController.create);
+myRouter.put('/medicalappointment/:_id',myMedicalAppointmentController.update);
+myRouter.delete('/medicalappointment/:_id',myMedicalAppointmentController.delete);
+
+
 
 //Asignación del puerto para el servidor Web
 myApp.listen(4000);
