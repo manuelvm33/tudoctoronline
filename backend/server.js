@@ -34,7 +34,7 @@ myApp.use(cors());
 //Here I use the routes
 myApp.use(myRouter);
 
-var whitelist = ['http://localhost:4000/', 'http://localhost:4200/']
+var whitelist = ['http://localhost:4000/', 'http://localhost:4200/', 'http://localhost:3000/'];
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
   if (whitelist.indexOf(req.header('Origin')) !== -1) {
