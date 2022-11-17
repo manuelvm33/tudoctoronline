@@ -21,9 +21,9 @@ const MedicalAppo = () => {
             <Navbar></Navbar>
             <div className="content-wrapper">
                 <Header
-                    titulo={"Listado De Especialistas"}
+                    titulo={"Listado De Citas Medicas"}
                     breadCrumb1={"Inicio"}
-                    breadCrumb2={"Especialistas"}
+                    breadCrumb2={"Citas Medicas"}
                     ruta={"/home"}
                 ></Header>
                         <div className="container-fluid">
@@ -32,9 +32,9 @@ const MedicalAppo = () => {
                                         medicalappointment.map(medicalappo => 
                                             <div className="card border border-primary">                   
                                                 <div className="text-center">
-                                                <img classname="rounded mx-auto d-block" src={"../dist/img/appointment.png"} height={300} width={300} alt="Card image cap" />
+                                                <img className="rounded mx-auto d-block" src={"../dist/img/appointment.png"} height={300} width={300} alt="Card image cap" />
                                                 </div>
-                                                <div classname="card-body" key={medicalappo._id}>
+                                                <div className="card-body" key={medicalappo._id}>
                                                     <h5 className="card-text text-center">Fecha: {medicalappo.medical_appointment_fechahora}</h5>
                                                     <hr/>
                                                     <p className="card-text text-center"> Paciente ID :{ medicalappo.patient_id}</p>

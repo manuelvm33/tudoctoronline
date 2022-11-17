@@ -31,13 +31,15 @@ const Patient = () => {
                                 {
                                         patient.map(patient => 
                                             <div className="card border border-primary">                   
-                                                <img classname="card-img-top rounded-circle" src={"../dist/img/patient.png"} height={200} width={180} alt="Card image cap" />
-                                                <div classname="card-body" key={patient._id}>
+                                                <img className="card-img-top rounded-circle" src={"../dist/img/patient.png"} height={200} width={180} alt="Card image cap" />
+                                                <div className="card-body" >
+                                                    <div key={patient._id}>
                                                     <h5 className="card-text text-center">{patient.patient_name} {patient.patient_lastName}</h5>
                                                     <hr/>
                                                     <p className="card-text text-center">{patient.patient_email}</p>
                                                     <hr/>
                                                     <p className="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>                
+                                                    </div>
                                                 </div>
                                             </div>
                                     )

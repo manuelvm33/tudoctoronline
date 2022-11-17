@@ -34,7 +34,7 @@ const Specialist = () => {
                                             <div className="text-center">
                                                 <img classname="card-img-top rounded-circle" src={"../dist/img/specialist.png"} height={200} width={180} alt="Card image cap" />
                                             </div>
-                                                <div classname="card-body" key={specialist._id}>
+                                                <div classname="card-body" key={specialist.id}>
                                                     <h5 className="card-text text-center"> {specialist.specialist_name} {specialist.specialist_lastName}</h5>
                                                     <hr/>
                                                     <p className="card-text text-center"> {specialist.specialist_email}</p>
