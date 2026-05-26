@@ -1,0 +1,20 @@
+.bg {
+  background-image: url("./assets/bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-especialistas {
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-citasMedicas {
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
