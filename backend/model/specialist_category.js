@@ -1,10 +1,10 @@
-const myMongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-const mySpecialistCategorySchema  = myMongoose.Schema({
-    category_id :Number,
-    category_name :String,
-},{
-    versionKey:false
+const mySpecialistCategorySchema = new mongoose.Schema({
+    category_id: Number,
+    category_name: String
+}, {
+    versionKey: false
 });
 
-module.exports = myMongoose.model("specialist_categories", mySpecialistCategorySchema);
+module.exports = mongoose.model("specialist_categories", mySpecialistCategorySchema);
