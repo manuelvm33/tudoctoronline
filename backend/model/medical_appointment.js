@@ -1,13 +1,12 @@
-const { default: mongoose } = require('mongoose');
-const myMongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-const myMedicalAppointment  = myMongoose.Schema({
-    medical_appointment_id :Number,
+const myMedicalAppointmentSchema = new mongoose.Schema({
+    medical_appointment_id: Number,
     medical_appointment_fechahora: Date,
     patient_id: [mongoose.Types.ObjectId],
     specialist_id: [mongoose.Types.ObjectId]
-},{
-    versionKey:false
+}, {
+    versionKey: false
 });
 
-module.exports = myMongoose.model("medical_appointment", myMedicalAppointment);
+module.exports = mongoose.model("medical_appointment", myMedicalAppointmentSchema);

@@ -190,8 +190,3 @@ Para evitar recargas innecesarias y dar feedback interactivo al usuario, se util
 - **Modelado No Relacional Referenciado**: Las referencias de Mongoose (`mongoose.Types.ObjectId`) demuestran que las bases de datos NoSQL como MongoDB pueden soportar lógicas relacionales fuertes de manera eficiente si se modelan correctamente mediante arreglos y referencias directas.
 
 ---
-
-## 👤 Autor
-
-Desarrollado y mantenido con dedicación y enfoque profesional en ingeniería de software.
-- **GitHub**: [@u31g09](https://github.com/u31g09)
